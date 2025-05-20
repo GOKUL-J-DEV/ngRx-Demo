@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.sass'
+  styleUrl: './app.component.sass',
 })
 export class AppComponent {
   title = 'ngRx-demo';
+  count: number = 0;
+  increment() {
+    this.count++;
+  }
+  decrement() {
+    this.count--;
+  }
+  reset() {
+    this.count = 0;
+  }
 }
