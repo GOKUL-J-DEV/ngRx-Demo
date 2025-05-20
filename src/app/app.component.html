@@ -1,5 +1,5 @@
 <p>Current Count</p>
-<h2>{{ count }}</h2>
+<h2>{{ count$ | async }}</h2>
 <button (click)="increment()">+</button>
 <button (click)="decrement()">-</button>
 <button (click)="reset()">Reset</button>

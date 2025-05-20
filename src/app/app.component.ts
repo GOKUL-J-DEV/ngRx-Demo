@@ -1,21 +1,29 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { decrement, increment, reset } from './counter.action';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass',
 })
 export class AppComponent {
   title = 'ngRx-demo';
-  count: number = 0;
+  count$!: Observable<number>;
+
+  constructor(private store: Store<{ count: number }>) {
+    this.count$ = this.store.select('count');
+  }
   increment() {
-    this.count++;
+    this.store.dispatch(increment());
   }
   decrement() {
-    this.count--;
+    this.store.dispatch(decrement());
   }
   reset() {
-    this.count = 0;
+    this.store.dispatch(reset());
   }
 }
